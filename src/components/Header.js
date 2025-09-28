@@ -28,11 +28,11 @@ const Header = () => {
           <Navbar.Brand as={Link} to="/">
             <img
               src={logo}
-              height="45px"
+              height="55px"
               width="auto"
               alt="Code2Dream Logo"
               style={{ 
-                marginRight: "10px",
+                marginRight: "15px",
                 borderRadius: "8px",
                 objectFit: "contain"
               }}

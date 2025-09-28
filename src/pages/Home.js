@@ -58,57 +58,133 @@ const Home = () => {
           pointerEvents: 'none'
         }}></div>
         <Container>
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="display-4"
+            transition={{ duration: 1.2, type: "spring", stiffness: 100 }}
+            className="text-center"
           >
-            Master Your Coding Skills with Code2Dream
-          </motion.h1>
+            <h1 
+              className="display-3 mb-4"
+              style={{
+                background: "linear-gradient(135deg, #ffd700, #ffeb3b, #fff9c4)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                fontWeight: "900",
+                textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+                letterSpacing: "2px",
+                fontFamily: "'Poppins', sans-serif"
+              }}
+            >
+              🚀 Transform Your Future with 
+              <br/>
+              <span style={{
+                background: "linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                fontSize: "1.2em",
+                display: "inline-block",
+                transform: "perspective(1000px) rotateY(-15deg)",
+                textShadow: "none"
+              }}>
+                CODE2DREAM
+              </span>
+            </h1>
+          </motion.div>
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="lead"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="lead mb-5"
+            style={{
+              fontSize: "1.4rem",
+              fontWeight: "300",
+              color: "#e0e0e0",
+              textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
+              maxWidth: "700px",
+              margin: "0 auto",
+              lineHeight: "1.6"
+            }}
           >
-            Leading software training & placement institute for aspiring developers.
+            ✨ Where Dreams Meet Reality - Master cutting-edge technologies, 
+            land your dream job, and build the future you deserve!
           </motion.p>
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1 }}
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 1, duration: 0.8, type: "spring" }}
+            className="d-flex flex-wrap justify-content-center gap-3"
           >
             <Button
               as={Link}
               to="/courses"
-              style={{
-                backgroundColor: "#1e1e1e",
-                borderColor: "#f5b700",
-                color: "#f5b700",
-                marginTop: "20px",
-                marginRight: "20px",
-              }}
               size="lg"
-              className="btn-animated"
+              className="custom-btn-primary"
+              style={{
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                border: "none",
+                borderRadius: "50px",
+                padding: "15px 35px",
+                fontSize: "1.1rem",
+                fontWeight: "600",
+                color: "white",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                fontFamily: "'Dancing Script', cursive",
+                boxShadow: "0 8px 25px rgba(102, 126, 234, 0.4)",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                position: "relative",
+                overflow: "hidden"
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = "translateY(-3px) scale(1.05)";
+                e.target.style.boxShadow = "0 15px 35px rgba(102, 126, 234, 0.6)";
+                e.target.style.background = "linear-gradient(135deg, #764ba2 0%, #667eea 100%)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = "translateY(0) scale(1)";
+                e.target.style.boxShadow = "0 8px 25px rgba(102, 126, 234, 0.4)";
+                e.target.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+              }}
             >
-              View Courses
+              🎓 Explore Courses
             </Button>
 
             <Button
               as={Link}
-              to="/training"
-              style={{
-                backgroundColor: "#00796b",
-                borderColor: "#f5b700",
-                color: "white",
-                marginTop: "20px",
-                marginRight: "20px",
-              }}
+              to="/contact"
               size="lg"
-              className="btn-animated"
+              className="custom-btn-secondary"
+              style={{
+                background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                border: "none",
+                borderRadius: "50px",
+                padding: "15px 35px",
+                fontSize: "1.1rem",
+                fontWeight: "600",
+                color: "white",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                fontFamily: "'Dancing Script', cursive",
+                boxShadow: "0 8px 25px rgba(245, 87, 108, 0.4)",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                position: "relative",
+                overflow: "hidden"
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = "translateY(-3px) scale(1.05)";
+                e.target.style.boxShadow = "0 15px 35px rgba(245, 87, 108, 0.6)";
+                e.target.style.background = "linear-gradient(135deg, #f5576c 0%, #f093fb 100%)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = "translateY(0) scale(1)";
+                e.target.style.boxShadow = "0 8px 25px rgba(245, 87, 108, 0.4)";
+                e.target.style.background = "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)";
+              }}
             >
-              Training Programs
+              📞 Enroll Now
             </Button>
           </motion.div>
         </Container>

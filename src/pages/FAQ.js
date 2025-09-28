@@ -39,7 +39,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-5 bg-light">
+    <section className="py-5" style={{ backgroundColor: '#1a1a1a', color: 'white' }}>
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -47,8 +47,8 @@ const FAQ = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-center mb-4">Frequently Asked Questions</h2>
-          <p className="text-center text-muted mb-5">
+          <h2 className="text-center mb-4" style={{ color: 'white' }}>Frequently Asked Questions</h2>
+          <p className="text-center mb-5" style={{ color: '#ccc' }}>
             Please contact us if you cannot find an answer to your question.
           </p>
 
