@@ -23,53 +23,242 @@ const Header = () => {
 
   return (
     <>
-      <Navbar expand="lg" bg="dark" variant="dark" sticky="top">
-        <div className="container-fluid">
-          <Navbar.Brand as={Link} to="/">
+      <Navbar 
+        expand="lg" 
+        variant="light" 
+        sticky="top"
+        style={{
+          background: '#ffffff',
+          boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
+          padding: '8px 0',
+          minHeight: '70px'
+        }}
+      >
+        <Container fluid style={{ maxWidth: '1400px' }}>
+          <Navbar.Brand 
+            as={Link} 
+            to="/"
+            style={{
+              fontWeight: '700',
+              fontSize: '1.8rem',
+              color: '#1a1a1a',
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              transition: 'all 0.3s ease',
+              marginRight: 'auto',
+              flexShrink: 0
+            }}
+          >
             <img
               src={logo}
-              height="55px"
+              height="50px"
               width="auto"
               alt="Code2Dream Logo"
               style={{ 
                 marginRight: "15px",
                 borderRadius: "8px",
-                objectFit: "contain"
+                objectFit: "contain",
+                flexShrink: 0
               }}
             />
-            Code2Dream
+            <span style={{
+              background: 'linear-gradient(135deg, #667eea, #764ba2)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              whiteSpace: 'nowrap'
+            }}>
+              Code2Dream
+            </span>
           </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse>
-            <Nav className="ms-auto" style={{ gap: "30px" }}>
-              <Nav.Link as={Link} to="/" className={isActive("/")}>
+          
+          <Navbar.Toggle 
+            aria-controls="basic-navbar-nav"
+            style={{
+              border: 'none',
+              outline: 'none',
+              boxShadow: 'none'
+            }}
+          />
+          
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto d-flex align-items-center" style={{ gap: "4px" }}>
+              <Nav.Link 
+                as={Link} 
+                to="/" 
+                className={isActive("/")}
+                style={{
+                  color: '#4a5568',
+                  fontWeight: '500',
+                  fontSize: '15px',
+                  padding: '10px 16px',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '40px'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#f7fafc';
+                  e.target.style.color = '#667eea';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#4a5568';
+                }}
+              >
                 Home
               </Nav.Link>
-             
 
-                <Nav.Link as={Link} to="/aboutus" className={isActive("/aboutus")}>
-                About Us
-              </Nav.Link>
-              <Nav.Link as={Link} to="/courses" className={isActive("/courses")}>
+              <Nav.Link 
+                as={Link} 
+                to="/courses" 
+                className={isActive("/courses")}
+                style={{
+                  color: '#4a5568',
+                  fontWeight: '500',
+                  fontSize: '15px',
+                  padding: '10px 16px',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '40px'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#f7fafc';
+                  e.target.style.color = '#667eea';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#4a5568';
+                }}
+              >
                 Courses
               </Nav.Link>
-              <Nav.Link as={Link} to="/training" className={isActive("/training")}>
-                Training Programs
+
+              <Nav.Link 
+                as={Link} 
+                to="/training" 
+                className={isActive("/training")}
+                style={{
+                  color: '#4a5568',
+                  fontWeight: '500',
+                  fontSize: '15px',
+                  padding: '10px 16px',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '40px'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#f7fafc';
+                  e.target.style.color = '#667eea';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#4a5568';
+                }}
+              >
+                Training
               </Nav.Link>
-              <Nav.Link as={Link} to="/contact" className={isActive("/contact")}>
+              
+              <Nav.Link 
+                as={Link} 
+                to="/aboutus" 
+                className={isActive("/aboutus")}
+                style={{
+                  color: '#4a5568',
+                  fontWeight: '500',
+                  fontSize: '15px',
+                  padding: '10px 16px',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '40px'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#f7fafc';
+                  e.target.style.color = '#667eea';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#4a5568';
+                }}
+              >
+                About
+              </Nav.Link>
+              
+              <Nav.Link 
+                as={Link} 
+                to="/contact" 
+                className={isActive("/contact")}
+                style={{
+                  color: '#4a5568',
+                  fontWeight: '500',
+                  fontSize: '15px',
+                  padding: '10px 16px',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '40px'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#f7fafc';
+                  e.target.style.color = '#667eea';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#4a5568';
+                }}
+              >
                 Contact
               </Nav.Link>
 
               <Button
-                variant="warning"
-                className="btn-animated"
+                variant="primary"
+                className="ms-3"
                 onClick={() => setShowLogin(true)}
+                style={{
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '10px 20px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: 'white',
+                  boxShadow: '0 4px 14px rgba(102, 126, 234, 0.3)',
+                  transition: 'all 0.2s ease',
+                  height: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  whiteSpace: 'nowrap'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-1px)';
+                  e.target.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 14px rgba(102, 126, 234, 0.3)';
+                }}
               >
                 Enroll Now
               </Button>
             </Nav>
           </Navbar.Collapse>
-        </div>
+        </Container>
       </Navbar>
       <LoginModal show={showLogin} onHide={() => setShowLogin(false)} />
     </>

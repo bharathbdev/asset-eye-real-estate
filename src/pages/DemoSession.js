@@ -14,20 +14,20 @@ const demoSessions = [
     color: "#61dafb"
   },
   {
-    course: "Data Analyst",
+    course: "Data Analytics",
     trainer: "Harish", 
     techStack: "PowerBI, SQL, Excel, VBA, Tableau",
     date: "Oct 7, 2025",
     time: "2:00 PM",
     meetingLink: "https://meet.google.com/xyz-uvwx-rst",
-    batchStart: "Oct 12, 2025",
-    icon: "�",
+    batchStart: "Oct 10, 2025",
+    icon: "📊",
     color: "#f39c12"
   },
   {
     course: "Programming Languages",
     trainer: "Bharath",
-    techStack: "JavaScript, TypeScript, OOPS, Coding Problems",
+    techStack: "JavaScript, TypeScript, Python, DSA",
     date: "Oct 8, 2025", 
     time: "11:00 AM",
     meetingLink: "https://meet.google.com/def-ghij-klm",
@@ -36,9 +36,31 @@ const demoSessions = [
     color: "#e74c3c"
   },
   {
-    course: "Aptitude",
+    course: "Testing & QA",
+    trainer: "Priya",
+    techStack: "Manual Testing, Selenium, Cypress",
+    date: "Oct 9, 2025", 
+    time: "2:00 PM",
+    meetingLink: "https://meet.google.com/test-auto-mtn",
+    batchStart: "Oct 16, 2025",
+    icon: "🔍",
+    color: "#27ae60"
+  },
+  {
+    course: "AI Tool Kit",
+    trainer: "Bharath",
+    techStack: "ChatGPT, GitHub Copilot, Automation",
+    date: "Oct 10, 2025", 
+    time: "4:00 PM",
+    meetingLink: "https://meet.google.com/ai-tools-demo",
+    batchStart: "Oct 20, 2025",
+    icon: "🤖",
+    color: "#8e44ad"
+  },
+  {
+    course: "Aptitude & Placement",
     trainer: "Yogesh",
-    techStack: "Aptitude, Verbal, Non-Verbal",
+    techStack: "Aptitude, Verbal, Mock Interviews",
     date: "Oct 8, 2025", 
     time: "3:00 PM",
     meetingLink: "https://meet.google.com/apt-itud-xyz",
@@ -108,13 +130,14 @@ const DemoSession = () => (
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <Row>
+        <Row className="g-4">
           {demoSessions.map((session, index) => (
-            <Col md={6} lg={3} key={index} className="mb-4">
+            <Col xl={4} lg={6} md={6} sm={12} key={index} className="d-flex">
               <motion.div 
                 variants={cardVariants}
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
+                className="w-100"
               >
                 <Card
                   style={{
@@ -138,7 +161,7 @@ const DemoSession = () => (
                     left: 0
                   }}></div>
                   
-                  <Card.Body className="p-4">
+                  <Card.Body className="p-4 d-flex flex-column">
                     {/* Course Header */}
                     <div className="text-center mb-4">
                       <div style={{
@@ -172,7 +195,7 @@ const DemoSession = () => (
                     </div>
 
                     {/* Session Details */}
-                    <div style={{ fontSize: "14px", color: "#ccc", lineHeight: "1.8" }}>
+                    <div style={{ fontSize: "14px", color: "#ccc", lineHeight: "1.8", flex: "1 1 auto" }}>
                       <div className="mb-3">
                         <div style={{ 
                           background: `linear-gradient(135deg, ${session.color}20, ${session.color}10)`,
@@ -198,7 +221,7 @@ const DemoSession = () => (
                             </Badge>
                           </div>
                           <div style={{ fontSize: "13px", color: "#bbb" }}>
-                            � <strong>Tech Stack:</strong><br/>
+                            💻 <strong>Tech Stack:</strong><br/>
                             {session.techStack}
                           </div>
                         </div>
@@ -222,7 +245,7 @@ const DemoSession = () => (
                     </div>
 
                     {/* Action Button */}
-                    <div className="mt-auto">
+                    <div style={{ marginTop: "auto" }}>
                       <Button
                         href={session.meetingLink}
                         target="_blank"
@@ -281,6 +304,7 @@ const DemoSession = () => (
             </p>
             <div style={{ display: "flex", justifyContent: "center", gap: "15px", flexWrap: "wrap" }}>
               <Button
+                href="tel:+919538802191"
                 style={{
                   background: "linear-gradient(135deg, #ffd700, #ffeb3b)",
                   border: "none",
@@ -288,19 +312,38 @@ const DemoSession = () => (
                   padding: "12px 25px",
                   color: "#000",
                   fontWeight: "600",
-                  boxShadow: "0 5px 15px rgba(255, 215, 0, 0.3)"
+                  boxShadow: "0 5px 15px rgba(255, 215, 0, 0.3)",
+                  textDecoration: "none"
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = "translateY(-2px) scale(1.05)";
+                  e.target.style.boxShadow = "0 8px 20px rgba(255, 215, 0, 0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = "translateY(0) scale(1)";
+                  e.target.style.boxShadow = "0 5px 15px rgba(255, 215, 0, 0.3)";
                 }}
               >
                 📞 Call +91 9538802191
               </Button>
               <Button
+                href="mailto:info@code2dream.in?subject=Demo Session Request"
                 style={{
                   background: "transparent",
                   border: "2px solid #fff",
                   borderRadius: "25px",
                   padding: "12px 25px",
                   color: "#fff",
-                  fontWeight: "600"
+                  fontWeight: "600",
+                  textDecoration: "none"
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "rgba(255, 255, 255, 0.1)";
+                  e.target.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "transparent";
+                  e.target.style.transform = "translateY(0)";
                 }}
               >
                 📧 Email Us

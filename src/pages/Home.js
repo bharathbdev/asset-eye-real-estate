@@ -1,11 +1,11 @@
-import React from "react";
-import { Container, Button, Row, Col, Card } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Button, Row, Col, Card, Carousel, Badge } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import DemoSession from "./DemoSession";
 import FAQ from "./FAQ";
 import LatestUpdates from "./LatestUpdates";
-import backgroundImage from "../assets/backgroundc2c.jpg";
+import Courses from "./Courses";
 
 const testimonials = [
   {
@@ -32,215 +32,514 @@ const testimonials = [
 ];
 
 const Home = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  // Carousel slides data
+  const carouselSlides = [
+    {
+      id: 1,
+      title: "Transform Your Future with CODE2DREAM",
+      subtitle: "Not just a Training. It's your next big step",
+      description: "Where Dreams Meet Reality - Master cutting-edge technologies, land your dream job, and build the future you deserve!",
+      icon: "🚀",
+      gradient: "linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1)"
+    },
+    {
+      id: 2,
+      title: "What We Teach",
+      subtitle: "Industry-Ready Skills That Matter",
+      description: "Full Stack Development • Data Analytics • Python • Testing • Career Guidance • Real Projects • 1:1 Mentoring",
+      icon: "🎓",
+      gradient: "linear-gradient(45deg, #667eea, #764ba2, #896dcf)"
+    },
+    {
+      id: 3,
+      title: "Who Should Join & Why",
+      subtitle: "Any Degree, Any Background - We Welcome All!",
+      description: "Career Changers • Fresh Graduates • Working Professionals • Homemakers • Students • Anyone Passionate About Tech",
+      icon: "👥",
+      gradient: "linear-gradient(45deg, #f093fb, #f5576c, #4facfe)"
+    }
+  ];
+
   return (
     <>
-      {/* Hero Section */}
+      {/* CodeBasics-Inspired Hero Carousel */}
       <div 
-        className="home-hero d-flex align-items-center justify-content-center text-center text-white"
         style={{
-          background: `linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url("${backgroundImage}")`,
-          backgroundSize: 'contain',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          backgroundRepeat: 'no-repeat',
-          minHeight: '80vh',
-          position: 'relative'
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          minHeight: '100vh',
+          position: 'relative',
+          overflow: 'hidden'
         }}
       >
-        {/* Overlay pattern */}
+        {/* Subtle Pattern Overlay */}
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.3) 0%, transparent 50%)',
-          pointerEvents: 'none'
-        }}></div>
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, type: "spring", stiffness: 100 }}
-            className="text-center"
-          >
-            <h1 
-              className="display-3 mb-4"
-              style={{
-                background: "linear-gradient(135deg, #ffd700, #ffeb3b, #fff9c4)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                fontWeight: "900",
-                textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
-                letterSpacing: "2px",
-                fontFamily: "'Poppins', sans-serif"
-              }}
-            >
-              🚀 Transform Your Future with 
-              <br/>
-              <span style={{
-                background: "linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                fontSize: "1.2em",
-                display: "inline-block",
-                transform: "perspective(1000px) rotateY(-15deg)",
-                textShadow: "none"
-              }}>
-                CODE2DREAM
-              </span>
-            </h1>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="lead mb-5"
-            style={{
-              fontSize: "1.4rem",
-              fontWeight: "300",
-              color: "#e0e0e0",
-              textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
-              maxWidth: "700px",
-              margin: "0 auto",
-              lineHeight: "1.6"
-            }}
-          >
-            ✨ Where Dreams Meet Reality - Master cutting-edge technologies, 
-            land your dream job, and build the future you deserve!
-          </motion.p>
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 1, duration: 0.8, type: "spring" }}
-            className="d-flex flex-wrap justify-content-center gap-3"
-          >
-            <Button
-              as={Link}
-              to="/courses"
-              size="lg"
-              className="custom-btn-primary"
-              style={{
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                border: "none",
-                borderRadius: "50px",
-                padding: "15px 35px",
-                fontSize: "1.1rem",
-                fontWeight: "600",
-                color: "white",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-                fontFamily: "'Dancing Script', cursive",
-                boxShadow: "0 8px 25px rgba(102, 126, 234, 0.4)",
-                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                position: "relative",
-                overflow: "hidden"
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = "translateY(-3px) scale(1.05)";
-                e.target.style.boxShadow = "0 15px 35px rgba(102, 126, 234, 0.6)";
-                e.target.style.background = "linear-gradient(135deg, #764ba2 0%, #667eea 100%)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = "translateY(0) scale(1)";
-                e.target.style.boxShadow = "0 8px 25px rgba(102, 126, 234, 0.4)";
-                e.target.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
-              }}
-            >
-              🎓 Explore Courses
-            </Button>
+          backgroundImage: `
+            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px, 40px 40px',
+          opacity: 0.4
+        }} />
 
-            <Button
-              as={Link}
-              to="/contact"
-              size="lg"
-              className="custom-btn-secondary"
+        <Carousel 
+          activeIndex={activeSlide} 
+          onSelect={(selectedIndex) => setActiveSlide(selectedIndex)}
+          controls={false}
+          indicators={false}
+          interval={6000}
+          fade={true}
+          style={{ position: 'relative', zIndex: 2 }}
+        >
+          {/* Slide 1: Transform Your Future with Statistics */}
+          <Carousel.Item>
+            <Container fluid className="px-4 py-5" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+              <Row className="align-items-center w-100">
+                <Col lg={6} md={12} className="text-white">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <Badge 
+                      className="mb-3"
+                      style={{
+                        fontSize: '14px',
+                        padding: '8px 16px',
+                        borderRadius: '25px',
+                        background: 'rgba(255, 255, 255, 0.15)',
+                        color: 'white',
+                        fontWeight: '500'
+                      }}
+                    >
+                      🚀 Transform Your Career
+                    </Badge>
+
+                    <h1 style={{
+                      fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                      fontWeight: '700',
+                      lineHeight: '1.2',
+                      marginBottom: '24px',
+                      color: 'white'
+                    }}>
+                      Launch Your Tech Career with
+                      <span style={{ color: '#ffd700', display: 'block' }}>
+                        Code2Dream
+                      </span>
+                    </h1>
+
+                    <p style={{
+                      fontSize: '1.2rem',
+                      lineHeight: '1.6',
+                      opacity: 0.9,
+                      marginBottom: '40px',
+                      color: 'white'
+                    }}>
+                      Join thousands of successful professionals who transformed their careers 
+                      through our industry-leading bootcamps and courses.
+                    </p>
+
+                    {/* Statistics - CodeBasics Style */}
+                    <Row className="mb-4">
+                      <Col md={4} className="text-center mb-3">
+                        <div style={{
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          borderRadius: '16px',
+                          padding: '24px 16px',
+                          border: '1px solid rgba(255, 255, 255, 0.1)'
+                        }}>
+                          <h3 style={{ color: '#ffd700', fontSize: '2.2rem', fontWeight: '700', margin: '0 0 8px' }}>
+                            5K+
+                          </h3>
+                          <p style={{ fontSize: '14px', opacity: 0.8, margin: 0, fontWeight: '500' }}>
+                            Students Trained
+                          </p>
+                        </div>
+                      </Col>
+                      <Col md={4} className="text-center mb-3">
+                        <div style={{
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          borderRadius: '16px',
+                          padding: '24px 16px',
+                          border: '1px solid rgba(255, 255, 255, 0.1)'
+                        }}>
+                          <h3 style={{ color: '#ffd700', fontSize: '2.2rem', fontWeight: '700', margin: '0 0 8px' }}>
+                            95%
+                          </h3>
+                          <p style={{ fontSize: '14px', opacity: 0.8, margin: 0, fontWeight: '500' }}>
+                            Placement Rate
+                          </p>
+                        </div>
+                      </Col>
+                      <Col md={4} className="text-center mb-3">
+                        <div style={{
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          borderRadius: '16px',
+                          padding: '24px 16px',
+                          border: '1px solid rgba(255, 255, 255, 0.1)'
+                        }}>
+                          <h3 style={{ color: '#ffd700', fontSize: '2.2rem', fontWeight: '700', margin: '0 0 8px' }}>
+                            50+
+                          </h3>
+                          <p style={{ fontSize: '14px', opacity: 0.8, margin: 0, fontWeight: '500' }}>
+                            Hiring Partners
+                          </p>
+                        </div>
+                      </Col>
+                    </Row>
+
+                    <div className="d-flex gap-3 flex-wrap">
+                      <Button
+                        as={Link}
+                        to="/courses"
+                        size="lg"
+                        style={{
+                          background: 'linear-gradient(135deg, #ffd700, #ffeb3b)',
+                          border: 'none',
+                          borderRadius: '8px',
+                          padding: '14px 28px',
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          color: '#333',
+                          boxShadow: '0 4px 20px rgba(255, 215, 0, 0.4)',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        Explore Bootcamps
+                      </Button>
+                      
+                      <Button
+                        as={Link}
+                        to="/contact"
+                        variant="outline-light"
+                        size="lg"
+                        style={{
+                          borderRadius: '8px',
+                          padding: '14px 28px',
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          border: '2px solid rgba(255, 255, 255, 0.3)',
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        Book Free Demo
+                      </Button>
+                    </div>
+                  </motion.div>
+                </Col>
+
+                <Col lg={6} md={12} className="text-center mt-4 mt-lg-0">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      borderRadius: '20px',
+                      padding: '40px 20px',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
+                    }}
+                  >
+                    <div style={{ fontSize: '4rem', marginBottom: '20px' }}>💻</div>
+                    <h3 style={{ color: 'white', fontSize: '1.5rem', fontWeight: '600', marginBottom: '12px' }}>
+                      Start Your Journey Today
+                    </h3>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', margin: 0 }}>
+                      From beginner to professional in just 12 weeks
+                    </p>
+                  </motion.div>
+                </Col>
+              </Row>
+            </Container>
+          </Carousel.Item>
+
+          {/* Slide 2: What We Teach */}
+          <Carousel.Item>
+            <Container fluid className="px-4 py-5" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+              <Row className="align-items-center w-100 text-center text-white">
+                <Col lg={12}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <Badge 
+                      className="mb-4"
+                      style={{
+                        fontSize: '16px',
+                        padding: '10px 20px',
+                        borderRadius: '25px',
+                        background: 'rgba(255, 255, 255, 0.15)',
+                        color: 'white',
+                        fontWeight: '500'
+                      }}
+                    >
+                      🎯 Industry-Ready Curriculum
+                    </Badge>
+                    
+                    <h1 style={{
+                      fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                      fontWeight: '700',
+                      marginBottom: '24px',
+                      color: 'white'
+                    }}>
+                      What We Teach
+                    </h1>
+                    
+                    <p style={{
+                      fontSize: '1.2rem',
+                      opacity: 0.9,
+                      marginBottom: '50px',
+                      maxWidth: '700px',
+                      margin: '0 auto 50px'
+                    }}>
+                      Master the most in-demand technologies with hands-on projects
+                    </p>
+                  </motion.div>
+
+                  <Row>
+                    {[
+                      { icon: '⚛️', title: 'Full Stack Development', desc: 'React, Node.js, MongoDB, Express' },
+                      { icon: '📊', title: 'Data Analytics', desc: 'Python, SQL, Power BI, Excel' },
+                      { icon: '🤖', title: 'AI & Machine Learning', desc: 'Python, TensorFlow, PyTorch' },
+                      { icon: '☁️', title: 'Cloud & DevOps', desc: 'AWS, Azure, Docker, Kubernetes' }
+                    ].map((course, idx) => (
+                      <Col md={6} lg={3} key={idx} className="mb-4">
+                        <motion.div
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.1)',
+                            borderRadius: '16px',
+                            padding: '30px 20px',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                            height: '100%',
+                            transition: 'all 0.3s ease'
+                          }}
+                          whileHover={{ y: -5 }}
+                        >
+                          <div style={{ fontSize: '3rem', marginBottom: '16px' }}>
+                            {course.icon}
+                          </div>
+                          <h4 style={{ 
+                            fontSize: '1.2rem', 
+                            fontWeight: '600', 
+                            marginBottom: '12px',
+                            color: '#ffd700'
+                          }}>
+                            {course.title}
+                          </h4>
+                          <p style={{ 
+                            fontSize: '0.95rem', 
+                            opacity: 0.8, 
+                            margin: 0,
+                            lineHeight: '1.4'
+                          }}>
+                            {course.desc}
+                          </p>
+                        </motion.div>
+                      </Col>
+                    ))}
+                  </Row>
+                </Col>
+              </Row>
+            </Container>
+          </Carousel.Item>
+
+          {/* Slide 3: Success Stories */}
+          <Carousel.Item>
+            <Container fluid className="px-4 py-5" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+              <Row className="align-items-center w-100">
+                <Col lg={6} md={12} className="text-white">
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <Badge 
+                      className="mb-3"
+                      style={{
+                        fontSize: '14px',
+                        padding: '8px 16px',
+                        borderRadius: '25px',
+                        background: 'rgba(255, 215, 0, 0.2)',
+                        color: '#ffd700',
+                        fontWeight: '500'
+                      }}
+                    >
+                      ⭐ Success Stories
+                    </Badge>
+                    
+                    <h1 style={{
+                      fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                      fontWeight: '700',
+                      lineHeight: '1.2',
+                      marginBottom: '24px'
+                    }}>
+                      Join Our Alumni at
+                      <span style={{ display: 'block', color: '#ffd700' }}>
+                        Top Companies
+                      </span>
+                    </h1>
+                    
+                    <p style={{
+                      fontSize: '1.2rem',
+                      lineHeight: '1.6',
+                      opacity: 0.9,
+                      marginBottom: '40px'
+                    }}>
+                      Our graduates work at leading tech companies with an average salary increase of 150%.
+                    </p>
+
+                    <div style={{
+                      background: 'rgba(255, 255, 255, 0.1)',
+                      borderRadius: '16px',
+                      padding: '24px',
+                      marginBottom: '30px',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
+                    }}>
+                      <div style={{ fontSize: '1.8rem', marginBottom: '8px' }}>💼</div>
+                      <h4 style={{ color: '#ffd700', marginBottom: '8px', fontSize: '1.3rem' }}>
+                        Career Transformation Guaranteed
+                      </h4>
+                      <p style={{ margin: '0 0 8px', opacity: 0.8, fontStyle: 'italic' }}>
+                        "From zero coding experience to landing my dream job at a Fortune 500 company!"
+                      </p>
+                      <small style={{ opacity: 0.6 }}>- Sarah K., Full Stack Developer</small>
+                    </div>
+
+                    <Button
+                      as={Link}
+                      to="/contact"
+                      size="lg"
+                      style={{
+                        background: 'linear-gradient(135deg, #ffd700, #ffeb3b)',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '14px 28px',
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        color: '#333'
+                      }}
+                    >
+                      Start Your Success Story
+                    </Button>
+                  </motion.div>
+                </Col>
+
+                <Col lg={6} md={12} className="mt-4 mt-lg-0">
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <Row>
+                      {[
+                        { company: 'Google', logo: '🔍', count: '12+ Alumni' },
+                        { company: 'Microsoft', logo: '🪟', count: '18+ Alumni' },
+                        { company: 'Amazon', logo: '📦', count: '25+ Alumni' },
+                        { company: 'Netflix', logo: '🎬', count: '8+ Alumni' }
+                      ].map((item, idx) => (
+                        <Col md={6} key={idx} className="mb-3">
+                          <motion.div
+                            style={{
+                              background: 'rgba(255, 255, 255, 0.1)',
+                              borderRadius: '16px',
+                              padding: '20px',
+                              border: '1px solid rgba(255, 255, 255, 0.1)',
+                              textAlign: 'center'
+                            }}
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            <div style={{ fontSize: '2.5rem', marginBottom: '8px' }}>
+                              {item.logo}
+                            </div>
+                            <h5 style={{ color: 'white', marginBottom: '4px', fontSize: '1.1rem' }}>
+                              {item.company}
+                            </h5>
+                            <small style={{ color: '#ffd700', fontWeight: '600' }}>
+                              {item.count}
+                            </small>
+                          </motion.div>
+                        </Col>
+                      ))}
+                    </Row>
+                  </motion.div>
+                </Col>
+              </Row>
+            </Container>
+          </Carousel.Item>
+        </Carousel>
+
+        {/* Custom Carousel Indicators */}
+        <div style={{
+          position: 'absolute',
+          bottom: '30px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          gap: '12px',
+          zIndex: 10
+        }}>
+          {carouselSlides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveSlide(idx)}
               style={{
-                background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-                border: "none",
-                borderRadius: "50px",
-                padding: "15px 35px",
-                fontSize: "1.1rem",
-                fontWeight: "600",
-                color: "white",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-                fontFamily: "'Dancing Script', cursive",
-                boxShadow: "0 8px 25px rgba(245, 87, 108, 0.4)",
-                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                position: "relative",
-                overflow: "hidden"
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                border: 'none',
+                background: activeSlide === idx 
+                  ? 'linear-gradient(135deg, #ffd700, #ffeb3b)' 
+                  : 'rgba(255, 255, 255, 0.5)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: activeSlide === idx 
+                  ? '0 0 20px rgba(255, 215, 0, 0.6)' 
+                  : 'none'
               }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = "translateY(-3px) scale(1.05)";
-                e.target.style.boxShadow = "0 15px 35px rgba(245, 87, 108, 0.6)";
-                e.target.style.background = "linear-gradient(135deg, #f5576c 0%, #f093fb 100%)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = "translateY(0) scale(1)";
-                e.target.style.boxShadow = "0 8px 25px rgba(245, 87, 108, 0.4)";
-                e.target.style.background = "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)";
-              }}
-            >
-              📞 Enroll Now
-            </Button>
-          </motion.div>
-        </Container>
+            />
+          ))}
+        </div>
       </div>
-      
-      {/* Freelance Services Section */}
+
+      {/* Enhanced Course Section */}
       <section className="py-5 bg-light">
         <Container>
           <motion.div
+            className="text-center mb-5"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center"
           >
-            <h2 className="mb-4">We Also Do Freelance Projects</h2>
-            <p className="lead mb-4">
-              Need a website, mobile app, or data analysis solution for your business? 
-              Our expert team provides freelance development services.
+            <h2
+              className="display-4 mb-3"
+              style={{
+                background: "linear-gradient(135deg, #667eea, #764ba2)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                fontWeight: "800"
+              }}
+            >
+              Popular Courses
+            </h2>
+            <p className="lead text-muted">
+              Choose from our industry-leading courses designed to get you job-ready
             </p>
-            <Row>
-              <Col md={4} className="mb-3">
-                <Card className="shadow-sm">
-                  <Card.Body className="text-center">
-                    <div style={{ fontSize: '3rem' }} className="mb-3">🌐</div>
-                    <h5>Web Development</h5>
-                    <p>Full-stack web applications, e-commerce sites, business websites</p>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col md={4} className="mb-3">
-                <Card className="shadow-sm">
-                  <Card.Body className="text-center">
-                    <div style={{ fontSize: '3rem' }} className="mb-3">📊</div>
-                    <h5>Data Analysis</h5>
-                    <p>Business intelligence, data visualization, reporting dashboards</p>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col md={4} className="mb-3">
-                <Card className="shadow-sm">
-                  <Card.Body className="text-center">
-                    <div style={{ fontSize: '3rem' }} className="mb-3">🤖</div>
-                    <h5>Automation</h5>
-                    <p>Process automation, testing automation, workflow optimization</p>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-            <Button variant="warning" size="lg" as={Link} to="/contact" className="mt-3">
-              Start Your Coding Journey
-            </Button>
           </motion.div>
+          
+          <Courses />
         </Container>
       </section>
-      
+
       <LatestUpdates />
       <DemoSession />
       <FAQ />

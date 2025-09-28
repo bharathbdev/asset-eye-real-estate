@@ -292,6 +292,30 @@ const Contact = () => {
     try {
       await sendMail(formData);
       toast.success("Enquiry sent successfully! We'll contact you soon.");
+      
+      // Open WhatsApp with pre-filled message
+      const whatsappMessage = `Hi Code2Dream! 👋
+
+I'm interested in joining your courses.
+
+📋 *My Details:*
+• Name: ${name}
+• Phone: ${phone}
+• Email: ${email}
+• Experience: ${experience}
+• Training Mode: ${trainingMode}
+• Selected Courses: ${selectedCoursesText}
+• Preferred Joining Date: ${joiningDate}
+
+${message ? `📝 *Additional Message:*\n${message}` : ''}
+
+Please provide me with more information about the course fees, timings, and next steps.
+
+Thanks! 🙏`;
+
+      const whatsappUrl = `https://wa.me/919538802191?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(whatsappUrl, '_blank');
+      
       // Reset form
       nameRef.current.value = "";
       phoneRef.current.value = "";

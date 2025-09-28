@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Button, Badge, Accordion, Modal } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Courses = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const courseCategories = {
     "Full Stack Development": [
@@ -92,8 +93,8 @@ const Courses = () => {
         title: "Power BI",
         icon: "📊",
         duration: "2 months",
-        topics: ["Data Modeling", "DAX", "Visualizations", "Reports", "Dashboards", "Power Query"],
-        description: "Business Intelligence with Microsoft Power BI",
+        topics: ["Data Modeling", "DAX", "Visualizations", "Reports", "Dashboards", "Power Query", "SQL", "VBA"],
+        description: "Business Intelligence with Microsoft Power BI, SQL, and VBA automation",
         hours: "70 hours"
       },
       {
@@ -142,6 +143,17 @@ const Courses = () => {
         topics: ["Cypress Framework", "API Testing", "E2E Testing", "Component Testing", "CI/CD", "Debugging"],
         description: "Modern testing with Cypress framework",
         hours: "80 hours"
+      }
+    ],
+    "AI & Modern Tools": [
+      {
+        id: "ai-toolkit",
+        title: "AI Tool Kit for Professionals",
+        icon: "🤖",
+        duration: "1.5 months",
+        topics: ["ChatGPT", "GitHub Copilot", "AI Writing Tools", "Automation Tools", "Productivity Hacks", "AI Integration"],
+        description: "Master AI tools to boost your productivity and stay ahead in the digital age - Any degree welcome!",
+        hours: "45 hours"
       }
     ],
     "Career Development": [
@@ -194,8 +206,38 @@ const Courses = () => {
   };
 
   const handleCourseClick = (course) => {
-    setSelectedCourse(course);
-    setShowModal(true);
+    // Navigate to specific course page based on course ID
+    const courseRoutes = {
+      "mern": "/courses/mern-stack",
+      "mean": "/courses/mean-stack", 
+      "html-css": "/courses/html-css-bootstrap",
+      "javascript": "/courses/javascript-typescript",
+      "nodejs": "/courses/nodejs",
+      "python": "/courses/python",
+      "sql": "/courses/sql",
+      "mongodb": "/courses/mongodb",
+      "powerbi": "/courses/power-bi",
+      "excel": "/courses/excel",
+      "tableau": "/courses/tableau",
+      "manual-testing": "/courses/manual-testing",
+      "selenium": "/courses/selenium-automation",
+      "cypress": "/courses/cypress-testing",
+      "ai-toolkit": "/courses/ai-toolkit",
+      "aptitude": "/courses/aptitude",
+      "dsa": "/courses/data-structures-algorithms",
+      "coding-problems": "/courses/coding-problems",
+      "resume-prep": "/courses/resume-preparation",
+      "mock-interviews": "/courses/mock-interviews"
+    };
+
+    const routePath = courseRoutes[course.id];
+    if (routePath) {
+      navigate(routePath, { state: { course } });
+    } else {
+      // Fallback to modal for courses without dedicated pages
+      setSelectedCourse(course);
+      setShowModal(true);
+    }
   };
 
   const handleCloseModal = () => {
@@ -241,48 +283,177 @@ const Courses = () => {
                   <h4 className="mb-0">{category}</h4>
                 </Accordion.Header>
                 <Accordion.Body>
-                  <Row>
+                  <Row className="g-4">
                     {courses.map((course, courseIndex) => (
-                      <Col lg={4} md={6} className="mb-4" key={course.id}>
+                      <Col xl={4} lg={6} md={6} sm={12} className="d-flex" key={course.id}>
                         <motion.div
                           initial={{ opacity: 0, y: 30 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: courseIndex * 0.1 }}
                           viewport={{ once: true }}
+                          className="w-100"
                         >
-                          <Card className="h-100 shadow-sm course-card" style={{cursor: 'pointer'}} 
-                                onClick={() => handleCourseClick(course)}>
-                            <Card.Body className="text-center">
-                              <div style={{ fontSize: '3rem' }} className="mb-3">
+                          <Card 
+                            className="h-100 shadow-sm course-card border-0" 
+                            style={{
+                              cursor: 'pointer',
+                              transition: 'all 0.3s ease',
+                              background: 'linear-gradient(145deg, #ffffff, #f8f9ff)',
+                              border: '1px solid rgba(102, 126, 234, 0.1)',
+                              borderRadius: '15px',
+                              overflow: 'hidden'
+                            }}
+                            onClick={() => handleCourseClick(course)}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.transform = 'translateY(-8px)';
+                              e.currentTarget.style.boxShadow = '0 15px 35px rgba(102, 126, 234, 0.2)';
+                              e.currentTarget.style.borderColor = '#667eea';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.transform = 'translateY(0)';
+                              e.currentTarget.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                              e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.1)';
+                            }}
+                          >
+                            <div style={{
+                              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                              padding: '20px 20px 0',
+                              textAlign: 'center',
+                              position: 'relative'
+                            }}>
+                              <div style={{ 
+                                fontSize: '3.5rem',
+                                marginBottom: '10px',
+                                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+                              }}>
                                 {course.icon}
                               </div>
-                              <Card.Title>{course.title}</Card.Title>
-                              <Card.Text>{course.description}</Card.Text>
+                              <Card.Title 
+                                style={{ 
+                                  color: '#fff', 
+                                  fontWeight: '600',
+                                  fontSize: '1.2rem',
+                                  marginBottom: '10px',
+                                  textShadow: '0 1px 2px rgba(0,0,0,0.1)'
+                                }}
+                              >
+                                {course.title}
+                              </Card.Title>
+                            </div>
+                            
+                            <Card.Body className="d-flex flex-column" style={{ padding: '20px' }}>
+                              <Card.Text 
+                                style={{ 
+                                  color: '#666', 
+                                  fontSize: '14px',
+                                  lineHeight: '1.5',
+                                  marginBottom: '15px',
+                                  flex: '0 0 auto'
+                                }}
+                              >
+                                {course.description}
+                              </Card.Text>
                               
-                              <div className="mb-3">
-                                <Badge bg="warning" text="dark">{course.duration}</Badge>
-                                <Badge bg="info" className="ms-2">{course.hours}</Badge>
+                              <div className="mb-3" style={{ flex: '0 0 auto' }}>
+                                <div className="d-flex justify-content-center gap-2 mb-2">
+                                  <Badge 
+                                    bg="warning" 
+                                    text="dark"
+                                    style={{ 
+                                      fontSize: '11px', 
+                                      padding: '5px 10px',
+                                      borderRadius: '15px'
+                                    }}
+                                  >
+                                    ⏱️ {course.duration}
+                                  </Badge>
+                                  <Badge 
+                                    bg="info"
+                                    style={{ 
+                                      fontSize: '11px', 
+                                      padding: '5px 10px',
+                                      borderRadius: '15px'
+                                    }}
+                                  >
+                                    📖 {course.hours}
+                                  </Badge>
+                                </div>
                               </div>
 
-                              <div className="mb-3">
-                                <small className="text-muted">Key Topics:</small>
+                              <div className="mb-3" style={{ flex: '1 1 auto' }}>
+                                <small style={{ 
+                                  color: '#888', 
+                                  fontSize: '12px',
+                                  fontWeight: '600',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.5px'
+                                }}>
+                                  Key Topics:
+                                </small>
                                 <div className="d-flex flex-wrap gap-1 mt-1">
                                   {course.topics.slice(0, 3).map((topic, i) => (
-                                    <Badge key={i} bg="secondary" className="small">
+                                    <Badge 
+                                      key={i} 
+                                      bg="secondary" 
+                                      className="small"
+                                      style={{ 
+                                        fontSize: '10px',
+                                        padding: '3px 8px',
+                                        borderRadius: '10px',
+                                        background: 'linear-gradient(45deg, #6c757d, #5a6268)',
+                                        border: 'none'
+                                      }}
+                                    >
                                       {topic}
                                     </Badge>
                                   ))}
                                   {course.topics.length > 3 && (
-                                    <Badge bg="secondary" className="small">
+                                    <Badge 
+                                      bg="secondary" 
+                                      className="small"
+                                      style={{ 
+                                        fontSize: '10px',
+                                        padding: '3px 8px',
+                                        borderRadius: '10px',
+                                        background: 'linear-gradient(45deg, #28a745, #20c997)',
+                                        border: 'none'
+                                      }}
+                                    >
                                       +{course.topics.length - 3} more
                                     </Badge>
                                   )}
                                 </div>
                               </div>
 
-                              <Button variant="warning" size="sm">
-                                View Details
-                              </Button>
+                              <div style={{ marginTop: 'auto' }}>
+                                <Button 
+                                  variant="warning" 
+                                  size="sm"
+                                  className="w-100"
+                                  style={{
+                                    background: 'linear-gradient(135deg, #ffd700, #ffeb3b)',
+                                    border: 'none',
+                                    borderRadius: '25px',
+                                    padding: '8px 15px',
+                                    fontSize: '13px',
+                                    fontWeight: '600',
+                                    color: '#333',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.5px',
+                                    transition: 'all 0.3s ease'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.target.style.background = 'linear-gradient(135deg, #ffeb3b, #ffd700)';
+                                    e.target.style.transform = 'scale(1.05)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.target.style.background = 'linear-gradient(135deg, #ffd700, #ffeb3b)';
+                                    e.target.style.transform = 'scale(1)';
+                                  }}
+                                >
+                                  📋 View Details
+                                </Button>
+                              </div>
                             </Card.Body>
                           </Card>
                         </motion.div>

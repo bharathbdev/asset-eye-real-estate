@@ -15,8 +15,8 @@ const LatestUpdates = () => {
     },
     {
       id: 2,
-      title: "🔥 New Data Analytics (SQL and PowerBI) Batch Starting Oct 10th",
-      content: "Registration open for our comprehensive data analyst course. Limited seats available - only 15 students per batch!",
+      title: "🔥 New Data Analytics Batch Starting Oct 10th",
+      content: "Registration open for our comprehensive Data Analytics course featuring SQL, Power BI, Excel VBA, and real-world projects. Limited seats - only 15 students per batch!",
       date: "Oct 1, 2025",
       type: "New Batch",
       priority: "high"
