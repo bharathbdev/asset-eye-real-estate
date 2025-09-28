@@ -37,6 +37,7 @@ const Header = () => {
         }}
       >
         <Container fluid style={{ maxWidth: '1400px' }}>
+          {/* Logo positioned at far left */}
           <Navbar.Brand 
             as={Link} 
             to="/"
@@ -48,7 +49,8 @@ const Header = () => {
               display: 'flex',
               alignItems: 'center',
               transition: 'all 0.3s ease',
-              marginRight: 'auto',
+              margin: 0,
+              padding: 0,
               flexShrink: 0
             }}
           >
@@ -77,6 +79,7 @@ const Header = () => {
           
           <Navbar.Toggle 
             aria-controls="basic-navbar-nav"
+            className="d-lg-none"
             style={{
               border: 'none',
               outline: 'none',
@@ -84,8 +87,17 @@ const Header = () => {
             }}
           />
           
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto d-flex align-items-center" style={{ gap: "4px" }}>
+          <Navbar.Collapse id="basic-navbar-nav" style={{ flexGrow: 1 }}>
+            {/* Navigation layout with all buttons moved to right */}
+            <div className="d-flex w-100 align-items-center">
+              {/* Spacer to push all navigation items to right */}
+              <div style={{ flex: '1 1 auto' }}></div>
+              
+              {/* All navigation items positioned towards right */}
+              <Nav className="d-flex align-items-center" style={{ 
+                gap: "24px",
+                flex: '0 0 auto'
+              }}>
               <Nav.Link 
                 as={Link} 
                 to="/" 
@@ -225,10 +237,10 @@ const Header = () => {
               >
                 Contact
               </Nav.Link>
-
+              
+              {/* Enroll Now button aligned with other navigation items */}
               <Button
                 variant="primary"
-                className="ms-3"
                 onClick={() => setShowLogin(true)}
                 style={{
                   background: 'linear-gradient(135deg, #667eea, #764ba2)',
@@ -256,7 +268,9 @@ const Header = () => {
               >
                 Enroll Now
               </Button>
-            </Nav>
+              </Nav>
+              
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

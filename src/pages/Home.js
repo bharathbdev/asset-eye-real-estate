@@ -155,7 +155,7 @@ const Home = () => {
                           border: '1px solid rgba(255, 255, 255, 0.1)'
                         }}>
                           <h3 style={{ color: '#ffd700', fontSize: '2.2rem', fontWeight: '700', margin: '0 0 8px' }}>
-                            5K+
+                            50+
                           </h3>
                           <p style={{ fontSize: '14px', opacity: 0.8, margin: 0, fontWeight: '500' }}>
                             Students Trained
@@ -251,9 +251,23 @@ const Home = () => {
                     <h3 style={{ color: 'white', fontSize: '1.5rem', fontWeight: '600', marginBottom: '12px' }}>
                       Start Your Journey Today
                     </h3>
-                    <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', margin: 0 }}>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', marginBottom: '15px' }}>
                       From beginner to professional in just 12 weeks
                     </p>
+                    <div style={{
+                      color: '#ffd700',
+                      fontSize: '1.1rem',
+                      fontWeight: '600',
+                      fontStyle: 'italic',
+                      textAlign: 'center',
+                      background: 'rgba(255, 215, 0, 0.1)',
+                      padding: '10px 15px',
+                      borderRadius: '10px',
+                      border: '1px solid rgba(255, 215, 0, 0.3)',
+                      margin: '0 auto'
+                    }}>
+                      "Not just a Training. It's your next big step"
+                    </div>
                   </motion.div>
                 </Col>
               </Row>

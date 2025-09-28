@@ -32,7 +32,7 @@ const AboutUs = () => {
                 </p>
                 <p style={{ color: '#4a5568', lineHeight: '1.6' }}>
                   Established in <strong>2025</strong>, we are a new but ambitious software training institute in Bangalore. 
-                  In our first year, we have successfully trained <strong>10+ students</strong> and helped them achieve 
+                  In our first year, we have successfully trained <strong>50+ students</strong> and helped them achieve 
                   their career goals, proving our commitment to quality education and results.
                 </p>
               </div>
@@ -159,7 +159,7 @@ const AboutUs = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-warning">10+</h2>
+                <h2 className="text-warning">45+</h2>
                 <p>Students Placed</p>
               </motion.div>
             </Col>
